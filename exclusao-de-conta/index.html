@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como excluir sua conta — Lumi</title>
+<meta name="description" content="Como excluir sua conta do Lumi e o que exatamente é apagado. Dá para excluir dentro do app, em Perfil → Excluir conta, ou por e-mail.">
+<link rel="icon" type="image/png" href="../assets/images/icon.png">
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; color: #1A1D2E; background: #FAFBFF;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 36px 0 10px; padding-top: 8px; }
+  .updated { color: #6B7280; font-size: .9rem; margin-bottom: 28px; }
+  p, li { font-size: 1rem; }
+  a { color: #C77400; }
+  ul, ol { padding-left: 22px; }
+  hr { border: 0; border-top: 1px solid rgba(0,0,0,.1); margin: 32px 0; }
+  .steps { counter-reset: step; list-style: none; padding: 0; }
+  .steps li {
+    counter-increment: step; position: relative;
+    padding: 0 0 14px 44px; margin: 0;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #F39C12; color: #fff;
+    font-weight: 700; font-size: .95rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .warn {
+    background: rgba(243,156,18,.12);
+    border-left: 3px solid #F39C12;
+    padding: 14px 16px; border-radius: 6px; margin: 20px 0;
+  }
+  .warn p { margin: 0; }
+  .back { display: inline-block; margin-bottom: 20px; font-size: .92rem; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #E6E8F0; background: #14161F; }
+    a { color: #F39C12; }
+    hr { border-color: rgba(255,255,255,.12); }
+    .updated { color: #9AA0AE; }
+    .warn { background: rgba(243,156,18,.10); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="../">← Lumi</a>
+
+<h1>Como excluir sua conta</h1>
+<p class="updated"><strong>Aplicativo:</strong> Lumi · <strong>Desenvolvedor:</strong> Daruan App</p>
+
+<p>Você pode apagar sua conta do Lumi e os dados associados a ela a qualquer momento, sem precisar pedir autorização a ninguém. Esta página explica como fazer e o que exatamente é removido.</p>
+
+<hr>
+
+<h2>Pelo aplicativo</h2>
+
+<ol class="steps">
+  <li>Abra o Lumi e vá até a aba <strong>Perfil</strong>.</li>
+  <li>Role até o fim e toque em <strong>Excluir conta</strong>.</li>
+  <li>Confirme sua identidade — digite sua senha, ou entre novamente com o Google, dependendo de como você criou a conta.</li>
+  <li>Confirme a exclusão. A remoção é feita na hora.</li>
+</ol>
+
+<div class="warn">
+  <p><strong>Essa ação é irreversível.</strong> Não existe período de recuperação: uma vez confirmada, a conta e os dados listados abaixo são apagados definitivamente.</p>
+</div>
+
+<h2>Sem usar o aplicativo</h2>
+
+<p>Se você não tem mais acesso ao app, escreva para <a href="mailto:daruan.app@gmail.com">daruan.app@gmail.com</a> informando o e-mail cadastrado. O pedido é atendido em até 30 dias.</p>
+
+<h2>O que é apagado</h2>
+
+<ul>
+  <li>Sua conta de acesso (Firebase Authentication)</li>
+  <li>Seu perfil — nome de exibição, cor do avatar e foto</li>
+  <li>Todas as suas reflexões e comentários, públicos e privados</li>
+  <li>Suas reações — curtidas e favoritos</li>
+  <li>Os vínculos de seguir e ser seguido</li>
+  <li>O backup dos seus dados na nuvem</li>
+</ul>
+
+<h2>O que não é apagado por essa ação</h2>
+
+<p>Os dados que ficam salvos apenas no seu aparelho não são removidos pela exclusão da conta, porque nunca saíram dele:</p>
+
+<ul>
+  <li>Progresso de leitura</li>
+  <li>Marcações e destaques em versículos</li>
+  <li>Versículos marcados para memorizar</li>
+  <li>Esboços de estudo</li>
+  <li>Cartas colecionáveis, moedas e sequência</li>
+</ul>
+
+<p>Para apagar também esses, desinstale o aplicativo do aparelho.</p>
+
+<h2>Prazo de retenção</h2>
+
+<p>Os dados listados em "O que é apagado" são removidos no momento da confirmação. Não guardamos cópia após a exclusão, exceto quando alguma obrigação legal exigir — situação em que o dado é mantido apenas pelo prazo exigido e sem uso para qualquer outra finalidade.</p>
+
+<hr>
+
+<p>Mais detalhes sobre quais dados o app coleta e por quê estão na <a href="../privacidade/">política de privacidade</a>.</p>
+
+<p>Dúvidas: <a href="mailto:daruan.app@gmail.com">daruan.app@gmail.com</a></p>
+
+</div>
+</body>
+</html>
