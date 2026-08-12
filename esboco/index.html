@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convite para um esboço de estudo — Lumi</title>
+
+<!-- A prévia que aparece no WhatsApp é montada por um robô que não roda
+     JavaScript, e o esboço viaja comprimido dentro da própria URL — então ela
+     é estática e genérica de propósito. Quem sabe abrir o conteúdo é o app. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lumi">
+<meta property="og:title" content="Convite para um esboço de estudo">
+<meta property="og:description" content="Alguém compartilhou um estudo bíblico com você. Toque para abrir no Lumi.">
+<meta property="og:image" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #E6E8F0;
+    background: linear-gradient(160deg, #0D0D1A 0%, #1A1000 60%, #0D0D0D 100%);
+  }
+  .cartao { width: 100%; max-width: 420px; text-align: center; }
+  .lumi { width: 132px; height: auto; margin-bottom: 18px; }
+  .chamada { font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: #F39C12; margin: 0 0 10px; }
+  h1 { font-size: 1.5rem; line-height: 1.3; margin: 0 0 6px; color: #fff; }
+  .sobre { font-size: .98rem; line-height: 1.6; color: #A8A8BA; margin: 0 0 28px; }
+  .botao {
+    display: block; width: 100%; padding: 15px 20px; margin-bottom: 12px;
+    border-radius: 14px; font-size: 1rem; font-weight: 700; text-decoration: none;
+    background: linear-gradient(90deg, #F39C12, #E67E22); color: #fff;
+  }
+  .secundario { background: none; border: 1px solid rgba(255,255,255,.18); color: #E6E8F0; font-weight: 500; }
+  .rodape { font-size: .82rem; color: #6E6E82; margin-top: 26px; line-height: 1.6; }
+  .rodape a { color: #8A8AA0; }
+  .invalido { display: none; }
+  body.sem-codigo .com-codigo { display: none; }
+  body.sem-codigo .invalido { display: block; }
+</style>
+</head>
+<body>
+<div class="cartao">
+  <img class="lumi" src="../assets/images/lumi.webp" alt="Lumi">
+
+  <div class="com-codigo">
+    <p class="chamada">Convite</p>
+    <h1>Alguém compartilhou um estudo com você</h1>
+    <p class="sobre">
+      Abra no Lumi para guardar este esboço nos seus estudos e continuar de onde
+      quiser — dá para editar, acrescentar e usar como base para o seu.
+    </p>
+
+    <a class="botao" id="abrir" href="#">Abrir no Lumi</a>
+    <a class="botao secundario" id="baixar" href="#">Ainda não tenho o app</a>
+  </div>
+
+  <div class="invalido">
+    <h1>Convite incompleto</h1>
+    <p class="sobre">
+      Esse link não traz nenhum esboço. Peça para quem enviou copiar o convite
+      de novo — ou baixe o app e monte o seu na aba Estudos.
+    </p>
+    <a class="botao" id="baixar-so" href="#">Baixar o Lumi</a>
+  </div>
+
+  <p class="rodape">
+    Lumi — leitura bíblica diária.<br>
+    <a href="../">Sobre o app</a> · <a href="../privacidade/">Privacidade</a>
+  </p>
+</div>
+
+<script>
+(function () {
+  var PACOTE = 'com.daruanapp.lumi';
+  var LOJA = 'https://play.google.com/store/apps/details?id=' + PACOTE;
+
+  var params = new URLSearchParams(location.search);
+  var p = params.get('e') || '';
+
+  document.getElementById('baixar').href = LOJA;
+  document.getElementById('baixar-so').href = LOJA;
+
+  // O esboço inteiro viaja aqui dentro, comprimido e em base64url — não há
+  // cópia em servidor nenhum para buscar. Só o alfabeto é validado: quem sabe
+  // ler o conteúdo é o app, e tentar decodificá-lo aqui obrigaria esta página
+  // a carregar uma biblioteca de descompressão para mostrar um título.
+  if (!/^[A-Za-z0-9_-]+$/.test(p)) {
+    document.body.className = 'sem-codigo';
+    return;
+  }
+
+  /*
+   * No Android o link `intent://` resolve os dois casos de uma vez: abre o app
+   * se estiver instalado e, se não estiver, o próprio sistema manda para o
+   * `browser_fallback_url` — a ficha na Play Store. É por isso que não há
+   * temporizador nem tentativa de adivinhar se o app existe: quem responde é o
+   * Android, que sabe.
+   *
+   * Fora do Android não existe esse mecanismo, então o botão principal usa o
+   * esquema direto; se nada acontecer, o segundo botão continua ali.
+   */
+  var caminho = 'esboco/' + p;
+  var ehAndroid = /Android/i.test(navigator.userAgent);
+  document.getElementById('abrir').href = ehAndroid
+    ? 'intent://' + caminho + '#Intent;scheme=explorabiblia;package=' + PACOTE +
+      ';S.browser_fallback_url=' + encodeURIComponent(LOJA) + ';end'
+    : 'explorabiblia://' + caminho;
+})();
+</script>
+</body>
+</html>
