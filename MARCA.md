@@ -91,15 +91,19 @@ O nome "Lumi" é sempre serifada 700 com `letter-spacing` folgado.
 
 ## O personagem
 
-`assets/images/lumi.webp` — ilustração, não o SVG do app. O app desenha a Lumi
-em tempo real porque ela muda de expressão; aqui ela é estática e no auge do
+**“O Lumi”, masculino.** O substantivo continua feminino quando aparece — “o
+Lumi é uma pequena criatura de luz” está certo, porque quem concorda com o nome
+são os pronomes, não o substantivo. O site já falou “a Lumi”; não fala mais.
+
+`assets/images/lumi.webp` — ilustração, não o SVG do app. O app desenha o Lumi
+em tempo real porque ele muda de expressão; aqui ele é estático e no auge do
 brilho, que é o estado que uma peça de divulgação mostra.
 
 Regras que valem na web:
 
-- Ela flutua num ciclo de 6 s (`lumi-float`) e leva um `drop-shadow` âmbar.
+- Ele flutua num ciclo de 6 s (`lumi-float`) e leva um `drop-shadow` âmbar.
   A flutuação é o único movimento contínuo do site.
-- Ela sempre tem escuro em volta. Não coloque a Lumi sobre uma seção clara.
+- Ele sempre tem escuro em volta. Não coloque o Lumi sobre uma seção clara.
 - `prefers-reduced-motion` desliga as animações de entrada. Qualquer animação
   nova entra sob a mesma media query.
 
@@ -120,3 +124,4 @@ no formato sem imagem.
 - [ ] Texto sobre âmbar em `#1A1000`, nunca branco
 - [ ] Página de convite ou legal → fonte do sistema; página de venda → fontes da marca
 - [ ] `lang="pt-BR"` e um `skip-link` se a página tiver navegação
+- [ ] O personagem tratado por **“o Lumi”**, no masculino
