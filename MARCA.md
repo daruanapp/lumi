@@ -89,6 +89,36 @@ O nome "Lumi" é sempre serifada 700 com `letter-spacing` folgado.
 
 ---
 
+## O logotipo
+
+`assets/images/logotipo.webp` (900×469, com alfa) — a palavra “Lumi” desenhada,
+com a estrela de quatro pontas no lugar do pingo do “i” e o floreio por baixo.
+Proporção **1,9193**. É arte fechada: não se recompõe em Playfair nem em fonte
+nenhuma.
+
+A marca tem três formas — **assinatura** (logotipo + Lumi), **logotipo** (só a
+palavra) e **ícone** (só o Lumi) —, e o kit completo explica quando cada uma
+entra. Na web:
+
+- O logotipo entra onde não cabe o personagem, ou onde ele competiria pela
+  atenção: cabeçalho, rodapé, abertura de peça.
+- **Nunca junto de “Lumi” escrito em Playfair na mesma peça.** Uma assinatura
+  por peça — o `<h1 class="hero__title">` da home e o logotipo são a mesma
+  coisa dita duas vezes.
+- **Sempre sobre escuro**, como tudo nesta marca. O dourado sobre claro cai
+  para ~2:1 e o halo some.
+- Nunca abaixo de **120 px de largura**: a estrela vira borrão e o floreio
+  some. Aí vai o nome em Playfair, ou o ícone.
+- Não recolorir, não esticar, não separar a estrela nem o floreio da palavra.
+
+O arquivo com alfa é derivado da arte original, que saiu sobre preto chapado —
+o brilho é luz somada ao preto, então cada pixel se decompõe de volta em cor e
+opacidade. O original fica guardado no repositório do app, em
+`assets/marca/logotipo-original.webp`. Nenhum dos dois se refaz a partir do
+código, ao contrário do personagem e do ícone.
+
+---
+
 ## O personagem
 
 **“O Lumi”, masculino.** O substantivo continua feminino quando aparece — “o
@@ -125,3 +155,4 @@ no formato sem imagem.
 - [ ] Página de convite ou legal → fonte do sistema; página de venda → fontes da marca
 - [ ] `lang="pt-BR"` e um `skip-link` se a página tiver navegação
 - [ ] O personagem tratado por **“o Lumi”**, no masculino
+- [ ] Logotipo e “Lumi” em Playfair não aparecem na mesma peça
