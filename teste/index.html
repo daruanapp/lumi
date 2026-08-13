@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajude a testar o Lumi</title>
+
+<!-- URL absoluta na imagem: o robô que monta a prévia no WhatsApp não resolve
+     caminho relativo e, sem ela, o link chega sem o cartão. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lumi">
+<meta property="og:title" content="Ajude a testar o Lumi">
+<meta property="og:description" content="Estamos abrindo vagas no teste fechado do app antes do lançamento. Toque para se inscrever.">
+<meta property="og:image" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
+<meta property="og:image:secure_url" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lumi — leitura e estudo bíblico">
+<meta property="og:url" content="https://daruanapp.github.io/lumi/teste/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ajude a testar o Lumi">
+<meta name="twitter:description" content="Vagas abertas no teste fechado do app antes do lançamento.">
+<meta name="twitter:image" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
+
+<link rel="canonical" href="https://daruanapp.github.io/lumi/teste/">
+<link rel="icon" type="image/png" href="../assets/images/icon.png">
+<meta name="theme-color" content="#0D0D1A">
+
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; padding: 40px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #E6E8F0; line-height: 1.6;
+    background: linear-gradient(160deg, #0D0D1A 0%, #1A1000 60%, #0D0D0D 100%);
+  }
+  .cartao { width: 100%; max-width: 460px; margin: 0 auto; }
+  .topo { text-align: center; }
+  .lumi { width: 118px; height: auto; margin-bottom: 16px; }
+  .chamada { font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: #F39C12; margin: 0 0 10px; }
+  h1 { font-size: 1.5rem; line-height: 1.3; margin: 0 0 12px; color: #fff; }
+  .sobre { font-size: 1rem; color: #A8A8BA; margin: 0 0 26px; }
+
+  .botao {
+    display: block; width: 100%; padding: 15px 20px; margin-bottom: 12px;
+    border-radius: 14px; font-size: 1rem; font-weight: 700; text-decoration: none;
+    text-align: center; background: linear-gradient(90deg, #F39C12, #E67E22); color: #fff;
+  }
+  .botao--fora { background: none; border: 1px solid rgba(255,255,255,.18); color: #E6E8F0; font-weight: 500; }
+
+  h2 { font-size: 1.05rem; color: #fff; margin: 34px 0 12px; }
+  .passos { list-style: none; counter-reset: passo; padding: 0; margin: 0; }
+  .passos li {
+    counter-increment: passo; position: relative;
+    padding: 0 0 16px 44px; font-size: .96rem; color: #C4C4D4;
+  }
+  .passos li::before {
+    content: counter(passo); position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: rgba(243,156,18,.16); color: #F39C12;
+    font-size: .85rem; font-weight: 700;
+  }
+  .passos strong { color: #E6E8F0; }
+
+  .aviso {
+    margin: 28px 0 0; padding: 16px 18px; border-radius: 14px;
+    background: rgba(243,156,18,.09); border: 1px solid rgba(243,156,18,.28);
+    font-size: .94rem; color: #D8D8E4;
+  }
+  .aviso strong { color: #F39C12; }
+
+  .rodape { font-size: .82rem; color: #6E6E82; margin-top: 34px; line-height: 1.7; text-align: center; }
+  .rodape a { color: #8A8AA0; }
+</style>
+</head>
+<body>
+<div class="cartao">
+
+  <div class="topo">
+    <img class="lumi" src="../assets/images/lumi.webp" alt="Lumi">
+    <p class="chamada">Teste fechado</p>
+    <h1>Ajude a testar o Lumi antes do lançamento</h1>
+    <p class="sobre">
+      O app está pronto e em fase final antes de ir para a Play Store. Precisamos
+      de um grupo de leitores para usar no dia a dia e apontar o que estiver
+      estranho — e você entra na lista de quem viu primeiro.
+    </p>
+  </div>
+
+  <!-- TROCAR: cole aqui o link do formulário depois de criá-lo no Google Forms. -->
+  <a class="botao" id="inscrever" href="COLE_AQUI_O_LINK_DO_FORMULARIO">Quero testar</a>
+
+  <h2>Como funciona</h2>
+  <ol class="passos">
+    <li>Você preenche o formulário com o <strong>e-mail da sua conta Google</strong> — a mesma que você usa na Play Store do celular.</li>
+    <li>Adicionamos seu e-mail à lista de testadores e te <strong>avisamos por e-mail</strong>, com o link para aceitar o convite.</li>
+    <li>Você aceita o convite, instala pela Play Store e usa o app normalmente.</li>
+  </ol>
+
+  <div class="aviso">
+    <strong>Um pedido importante:</strong> o Google exige que os testadores fiquem
+    com o app instalado por <strong>14 dias seguidos</strong>. Se alguém desinstala
+    no meio do caminho, a contagem recomeça para todo mundo. Então só se inscreva
+    se puder deixar instalado por esse tempo.
+  </div>
+
+  <div class="aviso" style="background:none;border-color:rgba(255,255,255,.14)">
+    Precisa ser conta <strong>Google</strong>. Um endereço de outro provedor não
+    funciona no teste da Play Store — se você entrar com um, o convite não abre.
+  </div>
+
+  <p class="rodape">
+    Dúvidas? Escreva para <a href="mailto:daruan.app@gmail.com">daruan.app@gmail.com</a>.<br>
+    <a href="../">Sobre o app</a> · <a href="../privacidade/">Privacidade</a>
+  </p>
+
+</div>
+</body>
+</html>
