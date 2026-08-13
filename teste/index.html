@@ -66,6 +66,9 @@
   }
   .passos strong { color: #E6E8F0; }
 
+  .alternativa { font-size: .9rem; color: #8E8EA2; margin: 18px 0 0; }
+  .alternativa a { color: #F39C12; }
+
   .aviso {
     margin: 28px 0 0; padding: 16px 18px; border-radius: 14px;
     background: rgba(243,156,18,.09); border: 1px solid rgba(243,156,18,.28);
@@ -98,9 +101,18 @@
   <h2>Como funciona</h2>
   <ol class="passos">
     <li>Você preenche o formulário com o <strong>e-mail da sua conta Google</strong> — a mesma que você usa na Play Store do celular.</li>
-    <li>Adicionamos seu e-mail à lista de testadores e te <strong>avisamos por e-mail</strong>, com o link para aceitar o convite.</li>
+    <li>Adicionamos seu e-mail à lista de testadores e te <strong>avisamos por e-mail</strong>, com o link para aceitar o convite. <strong>Olhe também no spam</strong> — e, se estiver lá, marque como "não é spam".</li>
     <li>Você aceita o convite, instala pela Play Store e usa o app normalmente.</li>
   </ol>
+
+  <!-- O e-mail pode se perder no spam. Com o link aqui, quem já se inscreveu
+       tem para onde voltar sem depender de achar a mensagem. -->
+  <p class="alternativa">
+    Já se inscreveu e o aviso não chegou? Depois de 24 horas, tente direto por
+    <a href="https://play.google.com/apps/testing/com.daruanapp.lumi">este link do convite</a>.
+    Ele só abre depois que seu e-mail entra na lista — se disser que você não é
+    testador, ainda não chegou a sua vez.
+  </p>
 
   <div class="aviso">
     <strong>Um pedido importante:</strong> o Google exige que os testadores fiquem

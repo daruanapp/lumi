@@ -155,25 +155,32 @@ function aoReceberResposta(e) {
 
   const nome = primeiroValor(e.namedValues, /nome|chamar/i);
 
-  MailApp.sendEmail({
-    to: email,
-    subject: 'Recebemos sua inscrição no teste do Lumi',
-    htmlBody:
-      '<p>' + (nome ? 'Oi, ' + escapar(nome) + '!' : 'Oi!') + '</p>' +
-      '<p>Sua inscrição chegou. Vou adicionar seu e-mail à lista de testadores e ' +
-      'te mando o link para aceitar o convite assim que liberar — normalmente em ' +
-      'até 24 horas.</p>' +
-      '<p><b>Um pedido:</b> o Google exige que os testadores fiquem com o app ' +
-      'instalado por 14 dias seguidos. Se alguém desinstala no meio, a contagem ' +
-      'recomeça para todo mundo.</p>' +
-      '<p>' + ASSINATURA + '</p>'
+  enviar({
+    para: email,
+    assunto: 'Recebemos sua inscrição no teste do Lumi',
+    paragrafos: [
+      nome ? 'Oi, ' + nome + '!' : 'Oi!',
+      'Sua inscrição chegou. Vou adicionar seu e-mail à lista de testadores e ' +
+      'te mando o link para aceitar o convite assim que liberar — normalmente ' +
+      'em até 24 horas.',
+      'Um pedido: o Google exige que os testadores fiquem com o app instalado ' +
+      'por 14 dias seguidos. Se alguém desinstala no meio, a contagem recomeça ' +
+      'para todo mundo.',
+      // Pedir o resgate agora é o que faz o próximo e-mail — o que traz o link,
+      // o que não pode ser perdido — chegar na caixa de entrada.
+      'Se esta mensagem caiu no spam, marque como "não é spam" e responda ' +
+      'qualquer coisa: é por aqui que o convite vai chegar.',
+      ASSINATURA
+    ]
   });
 
-  MailApp.sendEmail({
-    to: DONO,
-    subject: 'Novo testador do Lumi: ' + email,
-    body: (nome || '(sem nome)') + ' <' + email + '>\n\n' +
-          PropertiesService.getScriptProperties().getProperty('PLANILHA_URL')
+  enviar({
+    para: DONO,
+    assunto: 'Novo testador do Lumi: ' + email,
+    paragrafos: [
+      (nome || '(sem nome)') + ' <' + email + '>',
+      PropertiesService.getScriptProperties().getProperty('PLANILHA_URL')
+    ]
   });
 }
 
@@ -205,18 +212,22 @@ function avisarPendentes() {
     const email = String(dados[i][colEmail] || '').trim();
     if (!email || dados[i][colAviso]) continue;
 
-    MailApp.sendEmail({
-      to: email,
-      subject: 'Seu acesso ao teste do Lumi está liberado',
-      htmlBody:
-        '<p>Pronto: seu e-mail já está na lista de testadores.</p>' +
-        '<p><a href="' + LINK_OPTIN + '">Toque aqui para aceitar o convite</a> e ' +
-        'depois instale pela Play Store, usando a mesma conta Google deste ' +
-        'e-mail.</p>' +
-        '<p>Se a página disser que você não é testador, espere alguns minutos e ' +
-        'tente de novo — a lista leva um tempo para propagar.</p>' +
-        '<p>Lembrete: por favor, deixe instalado por 14 dias.</p>' +
-        '<p>' + ASSINATURA + '</p>'
+    enviar({
+      para: email,
+      assunto: 'Seu convite para testar o Lumi',
+      paragrafos: [
+        'Pronto: seu e-mail já está na lista de testadores.',
+        // O endereço à mostra, em vez de "toque aqui": lê melhor no texto puro
+        // e evita a construção que os filtros mais associam a isca.
+        'Abra este link para aceitar o convite:',
+        LINK_OPTIN,
+        'Depois é só instalar pela Play Store, usando a mesma conta Google ' +
+        'deste e-mail.',
+        'Se a página disser que você não é testador, espere alguns minutos e ' +
+        'tente de novo — a lista leva um tempo para propagar.',
+        'Lembrete: por favor, deixe instalado por 14 dias.',
+        ASSINATURA
+      ]
     });
 
     aba.getRange(i + 1, colAviso + 1).setValue(new Date());
@@ -224,7 +235,7 @@ function avisarPendentes() {
   }
 
   Logger.log(enviados + ' aviso(s) enviado(s). Cota de e-mail restante hoje: ' +
-             MailApp.getRemainingDailyQuota());
+             GmailApp.getRemainingDailyQuota());
 }
 
 
@@ -255,21 +266,62 @@ function lembrarDeNaoDesinstalar() {
   }
 
   // Todos em cópia oculta: um testador não precisa ver o e-mail dos outros.
-  MailApp.sendEmail({
-    to: DONO,
+  enviar({
+    para: DONO,
     bcc: destinatarios.join(','),
-    subject: 'Lumi: continua instalado aí?',
-    htmlBody:
-      '<p>Oi! Passando para agradecer e pedir uma coisa pequena.</p>' +
-      '<p>O teste precisa de todo mundo com o app instalado por 14 dias seguidos. ' +
-      'Se você desinstalou, dá para reinstalar pela Play Store com a mesma conta e ' +
-      'a contagem volta.</p>' +
-      '<p>Achou algo estranho no app? Responda este e-mail — é exatamente para isso ' +
-      'que o teste existe.</p>' +
-      '<p>' + ASSINATURA + '</p>'
+    assunto: 'Lumi: continua instalado aí?',
+    paragrafos: [
+      'Oi! Passando para agradecer e pedir uma coisa pequena.',
+      'O teste precisa de todo mundo com o app instalado por 14 dias seguidos. ' +
+      'Se você desinstalou, dá para reinstalar pela Play Store com a mesma conta ' +
+      'e a contagem volta.',
+      'Achou algo estranho no app? Responda este e-mail — é exatamente para isso ' +
+      'que o teste existe.',
+      ASSINATURA
+    ]
   });
 
   Logger.log('Lembrete enviado para ' + destinatarios.length + ' pessoa(s).');
+}
+
+
+/* ------------------------------------------------------------------ envio */
+
+/**
+ * Manda a mesma mensagem em texto puro e em HTML.
+ *
+ * As duas versões não são capricho. Mensagem só-HTML, sem nome de remetente e
+ * sem endereço de resposta é o retrato de automação disparada de conta pessoal,
+ * e é assim que ela vai parar no spam. Gerar as duas partes do mesmo array
+ * garante ainda que elas nunca divirjam entre si — divergir é outro sinal ruim,
+ * porque é o que faz quem quer esconder conteúdo do filtro.
+ *
+ * O replyTo tem o motivo mais forte: resposta de gente de verdade é o sinal
+ * positivo mais pesado que uma caixa de entrada conhece, e o pedido de resposta
+ * no primeiro e-mail existe justamente para provocá-lo antes do segundo, que é
+ * o que traz o link e não pode se perder.
+ *
+ * Usa GmailApp, e não MailApp, para a mensagem sair como e-mail de verdade da
+ * conta: fica em Enviados e a resposta do testador cai na conversa certa.
+ */
+function enviar(opcoes) {
+  const texto = opcoes.paragrafos.join('\n\n');
+  const html = opcoes.paragrafos
+    .map(function (p) { return '<p>' + emHtml(p) + '</p>'; })
+    .join('\n');
+
+  GmailApp.sendEmail(opcoes.para, opcoes.assunto, texto, {
+    htmlBody: html,
+    name: 'Lumi',
+    replyTo: DONO,
+    bcc: opcoes.bcc || ''
+  });
+}
+
+
+/** Escapa e transforma URL solta em link, para as duas versões baterem. */
+function emHtml(texto) {
+  return escapar(texto).replace(/(https?:\/\/\S+)/g, '<a href="$1">$1</a>');
 }
 
 
