@@ -2,6 +2,11 @@
    Lumi — Landing page
    Paleta: o mesmo gradiente escuro do tema dark do app
    (#0D0D1A → #1A1000 → #0D0D0D) + âmbar do acento
+
+   As regras da marca na web — por que o texto secundário é
+   alfa e não hex, por que as páginas de convite não carregam
+   Playfair, e por que texto sobre âmbar é #1A1000 e nunca
+   branco — estão em MARCA.md, na raiz.
    =========================================================== */
 
 :root {
