@@ -308,30 +308,45 @@ function coluna(cabecalho, padrao) {
 function colunaEmail(dados) {
   const cabecalho = dados[0];
   let melhor = -1;
-  let maisEmails = -1;
+  let melhorNota = -1;
 
   for (let c = 0; c < cabecalho.length; c++) {
-    if (!/mail/i.test(cabecalho[c])) continue;
+    const titulo = String(cabecalho[c]);
+    if (!/mail/i.test(titulo)) continue;
 
     let n = 0;
     for (let i = 1; i < dados.length; i++) {
-      if (String(dados[i][c] || '').indexOf('@') !== -1) n++;
+      if (ehEmail(dados[i][c])) n++;
     }
-    if (n > maisEmails) { melhor = c; maisEmails = n; }
+
+    // O conteúdo manda; o nome só desempata enquanto a planilha está vazia.
+    const nota = n * 1000 + (/endere|address|^\s*e-?mail\s*$/i.test(titulo) ? 1 : 0);
+    if (nota > melhorNota) { melhor = c; melhorNota = nota; }
   }
   return melhor;
 }
 
 
-/** Mesma ideia, no evento do acionador: vence a resposta que parece e-mail. */
+/** Mesma ideia, no evento do acionador: vence a resposta que é um endereço. */
 function emailDaResposta(dados) {
   const chaves = Object.keys(dados).filter(function (k) { return /mail/i.test(k); });
 
   for (const chave of chaves) {
     const valor = String(dados[chave][0] || '').trim();
-    if (valor.indexOf('@') !== -1) return valor;
+    if (ehEmail(valor)) return valor;
   }
   return '';
+}
+
+
+/**
+ * Endereço inteiro e sozinho, não "contém arroba". A coleta verificada cria
+ * uma pergunta de consentimento cujo texto é "Registrar fulano@exemplo.com
+ * como o e-mail a ser incluído na minha resposta" — casa com /mail/ no título
+ * e tem arroba no valor, e viraria destinatário se o teste fosse frouxo.
+ */
+function ehEmail(valor) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(valor || '').trim());
 }
 
 
