@@ -47,10 +47,10 @@ function configurar() {
     'todo mundo — então só siga se puder deixar instalado nesse período.'
   );
 
-  // O e-mail precisa vir da conta logada, não digitado: o convite do Play só
-  // abre na conta que está na Play Store do aparelho, e endereço digitado à mão
-  // é a causa mais comum de convite que "não funciona".
-  form.setCollectEmail(true);
+  if (!ligarColetaVerificada(form)) {
+    Logger.log('ATENÇÃO: não consegui ligar a coleta verificada pela API. ' +
+               'Ajuste na tela antes de divulgar (ver corrigirColetaDeEmail).');
+  }
   form.setLimitOneResponsePerUser(true);
   form.setAllowResponseEdits(false);
 
@@ -92,6 +92,50 @@ function configurar() {
 }
 
 
+/**
+ * O e-mail precisa vir da conta logada, e não digitado: o convite do Play só
+ * abre na conta que está na Play Store do aparelho, e endereço digitado à mão
+ * diverge dela o tempo todo — é a causa mais comum de convite que "não abre".
+ *
+ * O Forms tem três modos de coleta, e `setCollectEmail(true)` — a API antiga —
+ * entrega o do meio: "Resposta do participante", que é justamente uma caixa
+ * para digitar. O modo verificado tem método próprio, mais novo, então tenta
+ * esse primeiro e avisa se não existir nesta versão do Apps Script.
+ */
+function ligarColetaVerificada(form) {
+  const temApi = typeof form.setEmailCollectionType === 'function' &&
+                 FormApp.EmailCollectionType &&
+                 FormApp.EmailCollectionType.VERIFIED;
+
+  if (temApi) {
+    form.setEmailCollectionType(FormApp.EmailCollectionType.VERIFIED);
+    return true;
+  }
+
+  form.setCollectEmail(true);
+  return false;
+}
+
+
+/**
+ * Conserta um formulário que já nasceu com a coleta errada. Rode uma vez e
+ * confira na tela depois.
+ */
+function corrigirColetaDeEmail() {
+  const url = PropertiesService.getScriptProperties().getProperty('FORM_EDITAR');
+  if (!url) throw new Error('Rode configurar() primeiro.');
+
+  if (ligarColetaVerificada(FormApp.openByUrl(url))) {
+    Logger.log('Pronto: a coleta agora é verificada. Abra o formulário e ' +
+               'confirme que a pergunta "E-mail" sumiu.\n' + url);
+  } else {
+    Logger.log('Esta versão do Apps Script não expõe setEmailCollectionType.\n' +
+               'Ajuste na tela: ' + url + '\n' +
+               'Configurações → Respostas → Coletar endereços de e-mail → Verificado.');
+  }
+}
+
+
 function linksSalvos() {
   const p = PropertiesService.getScriptProperties().getProperties();
   return 'Link para divulgar (vai no botão da página): ' + p.FORM_PUBLICO +
@@ -106,7 +150,7 @@ function linksSalvos() {
  * Dispara a cada resposta nova. Confirma para quem se inscreveu e avisa o dono.
  */
 function aoReceberResposta(e) {
-  const email = primeiroValor(e.namedValues, /mail/i);
+  const email = emailDaResposta(e.namedValues);
   if (!email) return;
 
   const nome = primeiroValor(e.namedValues, /nome|chamar/i);
@@ -149,7 +193,7 @@ function avisarPendentes() {
     return;
   }
 
-  const colEmail = coluna(dados[0], /mail/i);
+  const colEmail = colunaEmail(dados);
   let colAviso = coluna(dados[0], /avisado/i);
   if (colAviso === -1) {
     colAviso = dados[0].length;
@@ -191,7 +235,7 @@ function avisarPendentes() {
 function lembrarDeNaoDesinstalar() {
   const aba = abaRespostas();
   const dados = aba.getDataRange().getValues();
-  const colEmail = coluna(dados[0], /mail/i);
+  const colEmail = colunaEmail(dados);
   const colAviso = coluna(dados[0], /avisado/i);
 
   if (colAviso === -1) {
@@ -252,6 +296,42 @@ function abaRespostas() {
 
 function coluna(cabecalho, padrao) {
   return cabecalho.findIndex(function (c) { return padrao.test(c); });
+}
+
+
+/**
+ * Achar a coluna de e-mail pelo conteúdo, e não só pelo cabeçalho: trocar a
+ * coleta de "resposta do participante" para verificada deixa para trás a coluna
+ * antiga, vazia e com nome igualmente parecido com "e-mail". Vence a que de
+ * fato tem endereços.
+ */
+function colunaEmail(dados) {
+  const cabecalho = dados[0];
+  let melhor = -1;
+  let maisEmails = -1;
+
+  for (let c = 0; c < cabecalho.length; c++) {
+    if (!/mail/i.test(cabecalho[c])) continue;
+
+    let n = 0;
+    for (let i = 1; i < dados.length; i++) {
+      if (String(dados[i][c] || '').indexOf('@') !== -1) n++;
+    }
+    if (n > maisEmails) { melhor = c; maisEmails = n; }
+  }
+  return melhor;
+}
+
+
+/** Mesma ideia, no evento do acionador: vence a resposta que parece e-mail. */
+function emailDaResposta(dados) {
+  const chaves = Object.keys(dados).filter(function (k) { return /mail/i.test(k); });
+
+  for (const chave of chaves) {
+    const valor = String(dados[chave][0] || '').trim();
+    if (valor.indexOf('@') !== -1) return valor;
+  }
+  return '';
 }
 
 
