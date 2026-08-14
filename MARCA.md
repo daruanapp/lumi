@@ -42,12 +42,18 @@ fala pelo responsável.
 | Página | Endereço |
 |---|---|
 | Landing (`/`) — chamada final e rodapé | `biblia.lumi@gmail.com` |
+| Teste fechado (`/teste/`) — "Dúvidas?" no rodapé | `biblia.lumi@gmail.com` |
 | Privacidade (`/privacidade/`), Exclusão de conta (`/exclusao-de-conta/`) | `daruan.app@gmail.com` |
-| Teste fechado (`/teste/`) | hoje em `daruan.app@` — **deveria** ser o da marca |
 
 O endereço das duas páginas legais é o que consta no formulário de Segurança
 dos Dados do Play Console: mudá-lo aqui sem refazer o formulário quebra a
 declaração. A regra inteira está no kit do app, na §7.
+
+Uma exceção que parece incoerência e não é: o §2.7 da privacidade, sobre os
+dados da inscrição no teste, também pede `daruan.app@`. A página do teste é
+suporte e fala pela marca, mas **pedido de exclusão de dado é sempre do
+responsável** — mesmo quando o dado veio de uma página de marca. O que decide
+o endereço é a natureza do pedido, não a página onde ele nasce.
 
 ---
 
