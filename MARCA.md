@@ -33,6 +33,22 @@ mais do que a serifada entrega ali. Elas mantêm a marca pelo **fundo, pelo
 Não converta as páginas de convite para Playfair. Se uma página nova precisar
 da tipografia completa, ela é uma página de venda, não de convite.
 
+### Qual e-mail cada página usa
+
+A mesma divisão da tabela acima decide o endereço: página que **vende ou dá
+suporte** fala pela marca; página que existe por **exigência da Play Store**
+fala pelo responsável.
+
+| Página | Endereço |
+|---|---|
+| Landing (`/`) — chamada final e rodapé | `biblia.lumi@gmail.com` |
+| Privacidade (`/privacidade/`), Exclusão de conta (`/exclusao-de-conta/`) | `daruan.app@gmail.com` |
+| Teste fechado (`/teste/`) | hoje em `daruan.app@` — **deveria** ser o da marca |
+
+O endereço das duas páginas legais é o que consta no formulário de Segurança
+dos Dados do Play Console: mudá-lo aqui sem refazer o formulário quebra a
+declaração. A regra inteira está no kit do app, na §7.
+
 ---
 
 ## As cores
@@ -156,3 +172,4 @@ no formato sem imagem.
 - [ ] `lang="pt-BR"` e um `skip-link` se a página tiver navegação
 - [ ] O personagem tratado por **“o Lumi”**, no masculino
 - [ ] Logotipo e “Lumi” em Playfair não aparecem na mesma peça
+- [ ] E-mail conforme o papel da página: venda ou suporte → `biblia.lumi@`; legal → `daruan.app@`
