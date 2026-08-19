@@ -16,4 +16,7 @@ de política de privacidade e de exclusão de conta.
 As regras da marca neste repositório — cores, tipografia, o personagem e o
 checklist de página nova — estão em [`MARCA.md`](MARCA.md).
 
+O que os testadores do teste fechado pedem fica anotado em
+[`SUGESTOES.md`](SUGESTOES.md) — registro de pedidos, não de compromissos.
+
 Contato: daruan.app@gmail.com
