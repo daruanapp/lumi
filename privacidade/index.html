@@ -38,7 +38,7 @@
 <a class="back" href="../">← Lumi</a>
 
 <h1>Política de Privacidade — Lumi</h1>
-<p class="updated"><strong>Última atualização:</strong> 12 de agosto de 2026</p>
+<p class="updated"><strong>Última atualização:</strong> 26 de agosto de 2026</p>
 
 <p>O Lumi é um aplicativo de leitura e estudo da Bíblia. Esta política explica quais dados o app coleta, por que coleta, com quem compartilha e como você pode acessá-los ou apagá-los.</p>
 <p>Ao usar o Lumi, você concorda com o descrito aqui.</p>
@@ -62,6 +62,7 @@
 <h3>2.2. Dados de perfil</h3>
 <ul>
   <li>Nome de exibição</li>
+  <li><strong>Apelido</strong> — como você prefere ser chamado. É opcional, o texto é escolhido por você e serve para o Lumi e as mensagens do app falarem com você pelo nome em vez de falarem no vazio. Fica guardado no aparelho e, se você tiver conta, também na sua conta e junto do registro de notificações (item 4.2), que é de onde o servidor o lê para escrever o aviso. O app <strong>não mostra o seu apelido para outras pessoas</strong> — quem aparece nas reflexões e nas Trilhas é o seu nome de exibição. Você pode trocá-lo ou deixá-lo em branco quando quiser, em <strong>Perfil → Editar perfil</strong>.</li>
   <li>Cor do avatar</li>
   <li>Foto de perfil (quando você entra com o Google)</li>
 </ul>
@@ -74,8 +75,18 @@
 </ul>
 <p>Comentários marcados como <strong>públicos</strong> ficam visíveis para outros usuários do app, junto com seu nome de exibição e avatar. Comentários <strong>privados</strong> são visíveis apenas para você.</p>
 
-<h3>2.4. Dados de uso do app</h3>
-<p>Ficam <strong>salvos apenas no seu aparelho</strong>, a menos que você use o backup (item 2.5):</p>
+<h3>2.4. Trilhas de leitura (grupos)</h3>
+<p>Uma Trilha é um plano de leitura seguido em grupo. Quando você cria uma ou entra numa, ficam guardados na nuvem:</p>
+<ul>
+  <li>O nome da Trilha, o plano escolhido e o código de convite</li>
+  <li>Quem participa, com o nome de exibição e a cor do avatar de cada pessoa</li>
+  <li>Quantos capítulos cada participante já leu — é essa contagem que acende a floresta do grupo</li>
+  <li>As dúvidas e reflexões escritas ali: o texto, os versículos citados, os trechos destacados, as respostas e as curtidas</li>
+</ul>
+<p>Tudo isso é visível para as <strong>outras pessoas da mesma Trilha</strong> — é justamente para isso que a Trilha existe. Quem não participa dela não consegue ler nada disso.</p>
+
+<h3>2.5. Dados de uso do app</h3>
+<p>Ficam <strong>salvos apenas no seu aparelho</strong>, a menos que você use o backup (item 2.6):</p>
 <ul>
   <li>Progresso de leitura (capítulos lidos e quantas vezes)</li>
   <li>Marcações e destaques em versículos</li>
@@ -85,21 +96,21 @@
   <li>Cartas colecionáveis, moedas, sequência (streak) e histórico do quiz</li>
 </ul>
 
-<h3>2.5. Backup na nuvem</h3>
-<p>Quando o backup é realizado, uma cópia dos dados do item 2.4 é enviada para o Firebase Firestore, associada à sua conta, junto com um <strong>identificador do aparelho</strong> — usado para saber de qual dispositivo veio a cópia mais recente.</p>
+<h3>2.6. Backup na nuvem</h3>
+<p>Quando o backup é realizado, uma cópia dos dados do item 2.5 é enviada para o Firebase Firestore, associada à sua conta, junto com um <strong>identificador do aparelho</strong> — usado para saber de qual dispositivo veio a cópia mais recente.</p>
 <p>O backup existe para você não perder seu progresso ao trocar de celular ou reinstalar o app.</p>
 
-<h3>2.6. Denúncias</h3>
+<h3>2.7. Denúncias</h3>
 <p>Quando você denuncia uma reflexão ou um autor, guardamos o motivo, o que você escreveu na denúncia, quem denunciou, quem foi denunciado e uma <strong>cópia do texto denunciado</strong> — sem essa cópia, apagar a reflexão bastaria para anular a denúncia.</p>
 <p>Quem foi denunciado não fica sabendo quem denunciou. Ninguém além da moderação consegue ler denúncias: nem as suas outras pessoas veem, nem você vê as dos outros.</p>
 
-<h3>2.7. Inscrição no teste fechado</h3>
+<h3>2.8. Inscrição no teste fechado</h3>
 <p>Enquanto o app estiver em teste fechado, quem quiser participar se inscreve por um formulário na página <a href="../teste/">ajude a testar o Lumi</a>. Nele coletamos o <strong>e-mail da conta Google</strong> e, opcionalmente, o nome pelo qual a pessoa prefere ser chamada.</p>
 <p>Esse e-mail é usado para dois fins, e nenhum outro: adicionar a pessoa à lista de testadores do Google Play — sem isso o app não pode ser instalado — e avisá-la sobre o teste. Não entra em lista de divulgação e não é usado para nada relacionado ao app em si.</p>
 <p>Os dados ficam numa planilha do Google Drive de acesso restrito ao responsável. <strong>São apagados ao fim do período de testes</strong>, ou antes disso se a pessoa pedir — basta responder a qualquer um dos e-mails ou escrever para <a href="mailto:daruan.app@gmail.com">daruan.app@gmail.com</a>.</p>
 <p>Essa inscrição é separada da conta do app: participar do teste não cria conta, e excluir a conta no app não remove a inscrição (nem o contrário).</p>
 
-<h3>2.8. O que <em>não</em> coletamos</h3>
+<h3>2.9. O que <em>não</em> coletamos</h3>
 <ul>
   <li>Não usamos ferramentas de análise, rastreamento ou publicidade.</li>
   <li>Não coletamos sua localização.</li>
@@ -115,6 +126,9 @@
   <tbody>
     <tr><td>E-mail e senha / conta Google</td><td>Autenticar você e proteger o acesso à sua conta</td></tr>
     <tr><td>Perfil (nome, cor, foto)</td><td>Identificar você nos comentários públicos</td></tr>
+    <tr><td>Apelido</td><td>Falar com você pelo nome, nas telas do app e nas notificações</td></tr>
+    <tr><td>Trilhas de leitura</td><td>Fazer o grupo funcionar: quem participa, o progresso comum e a conversa</td></tr>
+    <tr><td>Token de notificação</td><td>Entregar neste aparelho os avisos da Trilha que você pediu para receber</td></tr>
     <tr><td>Reflexões e comentários</td><td>Oferecer a funcionalidade de anotar e compartilhar reflexões</td></tr>
     <tr><td>Reações, seguir e silenciar</td><td>Fazer a parte comunitária do app funcionar</td></tr>
     <tr><td>Dados de uso e backup</td><td>Guardar seu progresso e permitir restaurá-lo em outro aparelho</td></tr>
@@ -123,24 +137,35 @@
 <p>Não tomamos decisões automatizadas com efeito jurídico sobre você.</p>
 
 <h2>4. Notificações</h2>
-<p>O Lumi envia <strong>notificações locais</strong>, geradas pelo próprio aparelho — lembretes de leitura, revisão de versículos, sequência em risco, plano de leitura e apresentação de funcionalidades.</p>
-<p>Não usamos notificações remotas (push por servidor) e <strong>não coletamos token de notificação</strong>.</p>
-<p>Você pode desligar todas ou parte delas em <strong>Perfil → Notificações</strong>, ou nas configurações do sistema do aparelho.</p>
+
+<h3>4.1. Notificações locais</h3>
+<p>A maior parte dos avisos é gerada pelo <strong>próprio aparelho</strong>, sem passar por servidor nenhum: lembretes de leitura, revisão de versículos, sequência em risco, plano de leitura e apresentação de funcionalidades.</p>
+
+<h3>4.2. Notificações das Trilhas (push por servidor)</h3>
+<p>Se você participa de uma Trilha, alguns avisos só podem vir de fora do aparelho — alguém perguntou, responderam a sua dúvida, a floresta do grupo clareou. Para que eles cheguem:</p>
+<ul>
+  <li>O app registra um <strong>token de notificação</strong> deste aparelho, guardado na sua conta junto com o sistema do aparelho (Android ou iOS), o seu apelido e quais avisos você quer receber. Esse registro <strong>não é legível por ninguém dentro do app</strong> — nem por você, nem por outros usuários: só o servidor que envia os avisos consegue lê-lo.</li>
+  <li>O aviso é escrito no servidor e entregue pelo <strong>serviço de push da Expo</strong>, que o repassa ao serviço da Apple (APNs) ou do Google (FCM), conforme o aparelho. O texto do aviso viaja junto: ele traz o nome de quem escreveu e um trecho do começo da mensagem, para você saber do que se trata sem precisar abrir o app.</li>
+  <li>O token serve para entregar esses avisos e nada mais. Não o usamos para identificar você fora do app, nem para publicidade ou rastreamento.</li>
+</ul>
+<p>Você pode desligar cada tipo de aviso em <strong>Perfil → Notificações</strong>, ou todos eles nas configurações do sistema do aparelho. Ao <strong>sair da conta</strong>, o token deste aparelho é removido; ao <strong>excluir a conta</strong>, o registro inteiro é apagado.</p>
 
 <h2>5. Com quem compartilhamos</h2>
 <p>Não vendemos seus dados. Eles são processados pelos seguintes serviços:</p>
 <ul>
   <li><strong>Google Firebase</strong> (Authentication e Firestore) — autenticação e armazenamento dos dados da conta, comentários e backup. <a href="https://firebase.google.com/support/privacy">Política</a></li>
   <li><strong>Google Sign-In</strong> — apenas se você optar por entrar com o Google. <a href="https://policies.google.com/privacy">Política</a></li>
+  <li><strong>Expo (Expo Application Services)</strong> — entrega das notificações das Trilhas. Recebe o token do aparelho e o texto do aviso, e nada além disso. <a href="https://expo.dev/privacy">Política</a></li>
+  <li><strong>Apple (APNs) e Google (Firebase Cloud Messaging)</strong> — o último trecho da entrega, do serviço de push até o seu aparelho. É o caminho obrigatório de qualquer notificação em iOS e Android.</li>
   <li><strong>GitHub</strong> — o app baixa arquivos com as traduções da Bíblia a partir de um repositório público. Essa requisição <strong>não envia nenhum dado seu</strong>.</li>
 </ul>
-<p>Outros usuários do app veem seu nome de exibição, avatar e o conteúdo dos comentários que você marcar como <strong>públicos</strong>.</p>
+<p>Outros usuários do app veem seu nome de exibição, avatar e o conteúdo dos comentários que você marcar como <strong>públicos</strong>. Quem participa da mesma Trilha que você vê também o seu progresso de leitura naquele plano e o que você escrever ali (item 2.4).</p>
 <p>Também podemos divulgar dados se formos legalmente obrigados por ordem judicial ou autoridade competente.</p>
 
 <h2>6. Por quanto tempo guardamos</h2>
 <p>Seus dados ficam armazenados enquanto sua conta existir. Ao excluir a conta (item 7), eles são apagados conforme descrito.</p>
 <p>Os dados salvos apenas no aparelho permanecem nele até você apagá-los no app ou desinstalar o aplicativo.</p>
-<p>Os e-mails de inscrição no teste fechado (item 2.7) são apagados ao fim do período de testes.</p>
+<p>Os e-mails de inscrição no teste fechado (item 2.8) são apagados ao fim do período de testes.</p>
 
 <h2>7. Seus direitos e como exercê-los</h2>
 <p>Você pode, a qualquer momento:</p>
@@ -156,10 +181,12 @@
 <p>Ao confirmar a exclusão, removemos permanentemente:</p>
 <ul>
   <li>Sua conta de acesso (Firebase Authentication)</li>
-  <li>Seu perfil (nome de exibição, cor e foto)</li>
+  <li>Seu perfil (nome de exibição, apelido, cor e foto)</li>
   <li>Todas as suas reflexões e comentários, públicos e privados</li>
   <li>Suas reações (curtidas e favoritos)</li>
   <li>Os vínculos de seguir e ser seguido</li>
+  <li>Sua participação nas Trilhas de leitura, junto com as dúvidas, reflexões e respostas que você escreveu nelas. Uma Trilha em que você era a única pessoa é encerrada por inteiro; nas outras, o grupo continua sem você</li>
+  <li>O registro de notificações — os tokens de todos os seus aparelhos, o apelido e as suas preferências de aviso</li>
   <li>O backup dos seus dados na nuvem</li>
 </ul>
 <p><strong>Essa ação é irreversível.</strong> Os dados guardados apenas no seu aparelho (progresso de leitura, marcações, cartas e esboços) não são removidos por essa ação — para apagá-los, desinstale o aplicativo.</p>
