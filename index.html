@@ -221,30 +221,29 @@
     <!-- ============ QUEM É O LUMI ============ -->
     <!-- "o Lumi", masculino, como no app. O substantivo "criatura" continua
          feminino — quem concorda com o nome são os pronomes.
-         A escada de luz segue o MARCA.md do app (§2, "A luz é a sequência").
-         As esferas são luz abstrata, não o personagem: o Lumi não se redesenha. -->
+         A imagem é o Lumi do app: o componente SVG de verdade
+         (src/components/Lumi), renderizado no estado do kit de divulgação —
+         happy, 365 dias, olhos de estrela. Só a borda do halo foi esfumada. -->
     <section class="section" id="personagem">
-        <div class="wrap">
-            <p class="section__kicker">O personagem</p>
-            <h2 class="section__title">Quem é o Lumi</h2>
-            <p class="section__lead">
-                Uma pequena criatura de luz, mistura de vagalume, estrela e chama, que
-                acompanha você dentro do app. A luz dele é a sua sequência de leitura:
-                quanto mais dias, mais ele brilha.
-            </p>
+        <div class="wrap personagem">
+            <div class="personagem__texto">
+                <p class="section__kicker">O personagem</p>
+                <h2 class="section__title">Quem é o Lumi</h2>
+                <p class="section__lead">
+                    Uma pequena criatura de luz, mistura de vagalume, estrela e chama, que
+                    acompanha você dentro do app. A luz dele é a sua sequência de leitura:
+                    quanto mais dias, mais ele brilha.
+                </p>
+                <p class="section__lead">
+                    Ficou uns dias sem ler? Ele não fica triste nem cobra: só perde o brilho, e
+                    acende de novo quando você volta. Hábito com companhia, não com culpa.
+                </p>
+            </div>
 
-            <ol class="escada reveal">
-                <li class="escada__passo escada__passo--0"><span class="escada__luz" aria-hidden="true"></span><strong>0 dias</strong><span>sem luz</span></li>
-                <li class="escada__passo escada__passo--1"><span class="escada__luz" aria-hidden="true"></span><strong>1 dia</strong><span>ganha cor</span></li>
-                <li class="escada__passo escada__passo--7"><span class="escada__luz" aria-hidden="true"></span><strong>7 dias</strong><span>começa a brilhar</span></li>
-                <li class="escada__passo escada__passo--30"><span class="escada__luz" aria-hidden="true"></span><strong>30 dias</strong><span>faíscas no ar</span></li>
-                <li class="escada__passo escada__passo--365"><span class="escada__luz" aria-hidden="true"></span><strong>365 dias</strong><span>estrela nos olhos</span></li>
-            </ol>
-
-            <p class="section__lead section__lead--depois">
-                Ficou uns dias sem ler? Ele não fica triste nem cobra: só perde o brilho, e
-                acende de novo quando você volta. Hábito com companhia, não com culpa.
-            </p>
+            <figure class="personagem__figura reveal">
+                <img src="assets/images/lumi-app.webp" alt="O Lumi como aparece no app: aceso, sorrindo, com olhos de estrela" width="640" height="640" loading="lazy">
+                <figcaption>Assim ele fica no app depois de 365 dias de leitura.</figcaption>
+            </figure>
         </div>
     </section>
 

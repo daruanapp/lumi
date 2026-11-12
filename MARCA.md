@@ -158,8 +158,12 @@ Regras que valem na web:
 
 - Ele flutua num ciclo de 6 s (`lumi-float`) e leva um `drop-shadow` âmbar.
   A flutuação é o único movimento contínuo do site.
-- A escada de luz de “Quem é o Lumi” (0, 1, 7, 30 e 365 dias) usa esferas de
-  luz em CSS, não o personagem: o Lumi não se redesenha nem se simplifica.
+`assets/images/lumi-app.webp` (seção “Quem é o Lumi”) é outra coisa: o Lumi
+**do app**, o componente SVG de `src/components/Lumi` renderizado no navegador
+no estado do kit de divulgação — `happy`, `streakDays={365}`, olhos de estrela.
+A única edição foi esfumar a borda do halo, que no componente é um círculo
+maior que a própria área de desenho e aparece cortado sobre fundo claro do
+degradê. Para refazer, renderize o componente; não redesenhe.
 - Ele sempre tem escuro em volta. Não coloque o Lumi sobre uma seção clara.
 - `prefers-reduced-motion` desliga as animações de entrada. Qualquer animação
   nova entra sob a mesma media query.

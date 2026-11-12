@@ -360,7 +360,6 @@ summary:focus-visible,
     margin: 0 auto 40px;
     line-height: 1.7;
 }
-.section__lead--depois { margin: 40px auto 0; }
 
 /* ---------- Cards ---------- */
 
@@ -482,53 +481,25 @@ summary:focus-visible,
     .vitrine__seta { display: none; }
 }
 
-/* ---------- Escada de luz ---------- */
+/* ---------- Quem é o Lumi ---------- */
 
-.escada {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 8px;
-    max-width: 620px;
-    margin: 0 auto;
-    text-align: center;
-}
-.escada__passo {
+.personagem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.35;
 }
-.escada__passo strong {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-top: 12px;
-}
+.personagem__texto .section__lead { margin-bottom: 20px; }
 
-/* luz abstrata, não o personagem: o Lumi não se redesenha */
-.escada__luz {
-    display: block;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 42% 38%, var(--luz-1) 0%, var(--luz-3) 32%, var(--accent) 68%, #C8860A 100%);
+.personagem__figura { margin: 8px 0 0; text-align: center; }
+.personagem__figura img {
+    width: min(300px, 78vw);
+    height: auto;
+    margin: 0 auto;
 }
-.escada__passo--0 .escada__luz {
-    background: radial-gradient(circle at 42% 38%, #9A9AA6 0%, #5E5E68 60%, #3A3A42 100%);
-    width: 36px; height: 36px; margin: 4px 0;
-}
-.escada__passo--1 .escada__luz { width: 38px; height: 38px; margin: 3px 0; }
-.escada__passo--7 .escada__luz { box-shadow: 0 0 18px 2px rgba(243, 156, 18, 0.35); }
-.escada__passo--30 .escada__luz {
-    box-shadow: 0 0 24px 4px rgba(243, 156, 18, 0.45), 14px -14px 0 -18px var(--luz-3), -16px 10px 0 -19px var(--luz-2);
-}
-.escada__passo--365 .escada__luz {
-    width: 48px; height: 48px; margin: -2px 0;
-    box-shadow: 0 0 34px 8px rgba(243, 156, 18, 0.55), 16px -16px 0 -19px var(--luz-1), -18px 12px 0 -20px var(--luz-2), 20px 14px 0 -21px var(--luz-3);
+.personagem__figura figcaption {
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: var(--text-muted);
 }
 
 /* ---------- E ainda ---------- */
@@ -662,11 +633,6 @@ summary:focus-visible,
     .luzes { grid-template-columns: repeat(2, 1fr); }
     .luz-card:first-child { grid-column: 1 / -1; }
     .extras { grid-template-columns: repeat(2, 1fr); }
-    .escada__luz { width: 52px; height: 52px; }
-    .escada__passo--0 .escada__luz { width: 42px; height: 42px; margin: 5px 0; }
-    .escada__passo--1 .escada__luz { width: 46px; height: 46px; margin: 3px 0; }
-    .escada__passo--365 .escada__luz { width: 58px; height: 58px; margin: -3px 0; }
-    .escada__passo { font-size: 13px; }
 }
 
 @media (min-width: 900px) {
@@ -681,6 +647,15 @@ summary:focus-visible,
     .hero__figure { order: 0; }
     .hero__lumi { width: 340px; }
     .hero__logo { width: 300px; }
+
+    /* Quem é o Lumi: imagem à esquerda, texto à direita */
+    .personagem { flex-direction: row; justify-content: center; gap: 56px; }
+    .personagem__figura { order: -1; margin: 0; }
+    .personagem__figura img { width: 360px; }
+    .personagem__texto { max-width: 520px; }
+    .personagem__texto .section__kicker,
+    .personagem__texto .section__title,
+    .personagem__texto .section__lead { text-align: left; margin-left: 0; }
 
     .vitrine__trilho {
         padding-left: max(20px, calc((100vw - var(--wrap)) / 2 + 20px));
