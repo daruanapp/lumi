@@ -18,7 +18,6 @@ palheta em `:root` que ninguém sincroniza automaticamente com o
 | Página | Caminho | Fontes | Papel |
 |---|---|---|---|
 | Landing | `/` | Playfair Display + Poppins | vende o app |
-| Teste fechado | `/teste/` | do sistema | recruta testador |
 | Convite de plano | `/plano/` | do sistema | abre o app com um plano |
 | Convite de esboço | `/esboco/` | do sistema | abre o app com um esboço |
 | Privacidade | `/privacidade/` | do sistema | exigência da Play Store |
@@ -42,18 +41,19 @@ fala pelo responsável.
 | Página | Endereço |
 |---|---|
 | Landing (`/`) — chamada final e rodapé | `biblia.lumi@gmail.com` |
-| Teste fechado (`/teste/`) — "Dúvidas?" no rodapé | `biblia.lumi@gmail.com` |
 | Privacidade (`/privacidade/`), Exclusão de conta (`/exclusao-de-conta/`) | `daruan.app@gmail.com` |
 
 O endereço das duas páginas legais é o que consta no formulário de Segurança
 dos Dados do Play Console: mudá-lo aqui sem refazer o formulário quebra a
 declaração. A regra inteira está no kit do app, na §7.
 
-Uma exceção que parece incoerência e não é: o §2.7 da privacidade, sobre os
-dados da inscrição no teste, também pede `daruan.app@`. A página do teste é
-suporte e fala pela marca, mas **pedido de exclusão de dado é sempre do
-responsável** — mesmo quando o dado veio de uma página de marca. O que decide
-o endereço é a natureza do pedido, não a página onde ele nasce.
+Uma exceção que parece incoerência e não é: o §2.8 da privacidade, sobre os
+dados da inscrição no teste fechado, também pede `daruan.app@`. A inscrição
+nasceu numa página de marca (a `/teste/`, que já saiu do site), mas **pedido de
+exclusão de dado é sempre do responsável** — mesmo quando o dado veio de uma
+página de marca. O que decide o endereço é a natureza do pedido, não a página
+onde ele nasce. A seção fica na política enquanto a planilha das inscrições
+existir; sai quando ela for apagada.
 
 ---
 
@@ -88,8 +88,9 @@ Duas diferenças em relação ao app, ambas propositais:
 O `--accent` sobre o fundo escuro dá 8,79:1 — em tela escura ele é uma cor de
 texto perfeitamente boa, e é assim que a landing o usa nos links.
 
-O `.skip-link` escreve `#1a1000` sobre o âmbar em vez de branco. **Esse é o
-padrão certo** e o app ainda não o segue: branco sobre `#F39C12` dá 2,19:1.
+O `.skip-link` e o botão primário da landing escrevem `#1A1000` sobre o âmbar
+em vez de branco. **Esse é o padrão certo** e o app ainda não o segue: branco
+sobre `#F39C12` dá 2,19:1.
 Qualquer botão âmbar novo neste repositório escreve em `#1A1000`.
 
 ---
@@ -131,6 +132,8 @@ entra. Na web:
   para ~2:1 e o halo some.
 - Nunca abaixo de **120 px de largura**: a estrela vira borrão e o floreio
   some. Aí vai o nome em Playfair, ou o ícone.
+- **Na landing**, o logotipo abre o hero junto do Lumi — a assinatura. Por isso
+  o cabeçalho e o rodapé mostram só o ícone, sem “Lumi” escrito em Playfair.
 - Não recolorir, não esticar, não separar a estrela nem o floreio da palavra.
 
 O arquivo com alfa é derivado da arte original, que saiu sobre preto chapado —
@@ -155,6 +158,8 @@ Regras que valem na web:
 
 - Ele flutua num ciclo de 6 s (`lumi-float`) e leva um `drop-shadow` âmbar.
   A flutuação é o único movimento contínuo do site.
+- A escada de luz de “Quem é o Lumi” (0, 1, 7, 30 e 365 dias) usa esferas de
+  luz em CSS, não o personagem: o Lumi não se redesenha nem se simplifica.
 - Ele sempre tem escuro em volta. Não coloque o Lumi sobre uma seção clara.
 - `prefers-reduced-motion` desliga as animações de entrada. Qualquer animação
   nova entra sob a mesma media query.

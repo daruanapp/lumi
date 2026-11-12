@@ -16,6 +16,12 @@
 
     --accent: #F39C12;
     --accent-2: #E67E22;
+    --accent-ink: #1A1000;
+
+    /* luz: o âmbar diluído em branco, mesma família do personagem */
+    --luz-1: #FFF6D8;
+    --luz-2: #FFE9A8;
+    --luz-3: #FFD766;
 
     --card-bg: rgba(255, 255, 255, 0.06);
     --card-bg-strong: rgba(255, 255, 255, 0.08);
@@ -48,6 +54,7 @@ body {
     font-family: var(--font-sans);
     color: var(--text-primary);
     background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+    background-color: var(--bg-3);
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
@@ -69,6 +76,15 @@ ul, ol { padding: 0; margin: 0; }
 .icon { width: 20px; height: 20px; flex-shrink: 0; }
 .icon--sm { width: 15px; height: 15px; }
 
+/* ---------- Fases do lançamento ---------- */
+/* .so-antes até 1º/12/2026; .so-depois a partir dali (script.js põe
+   .lancado no <html>). Sem JS fica a fase "antes". */
+
+.so-depois { display: none !important; }
+.lancado .so-antes { display: none !important; }
+.lancado .so-depois { display: revert !important; }
+.lancado .btn.so-depois { display: inline-flex !important; }
+
 /* ---------- Acessibilidade ---------- */
 
 .skip-link {
@@ -76,7 +92,7 @@ ul, ol { padding: 0; margin: 0; }
     left: -999px;
     top: 0;
     background: var(--accent);
-    color: #1a1000;
+    color: var(--accent-ink);
     padding: 10px 16px;
     border-radius: 0 0 8px 0;
     z-index: 200;
@@ -86,7 +102,8 @@ ul, ol { padding: 0; margin: 0; }
 
 a:focus-visible,
 button:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+.vitrine__trilho:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
@@ -120,12 +137,6 @@ summary:focus-visible {
     width: 32px;
     height: 32px;
 }
-.brand__name {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-}
 
 /* ---------- Botões ---------- */
 
@@ -145,9 +156,10 @@ summary:focus-visible {
 }
 .btn:active { transform: scale(0.97); }
 
+/* texto sobre o âmbar em #1A1000 (8,56:1), nunca branco (2,19:1) */
 .btn--primary {
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    color: #fff;
+    color: var(--accent-ink);
     box-shadow: 0 8px 24px rgba(243, 156, 18, 0.35);
 }
 .btn--primary:hover { box-shadow: 0 10px 30px rgba(243, 156, 18, 0.5); }
@@ -160,14 +172,13 @@ summary:focus-visible {
 .btn--ghost:hover { background: var(--card-bg-strong); }
 
 .btn--large { height: 56px; padding: 0 28px; font-size: 16px; }
-.btn--small { height: 38px; padding: 0 18px; font-size: 13px; }
-.btn--block { width: 100%; height: 52px; font-size: 15px; }
+.btn--small { height: 38px; padding: 0 16px; font-size: 13px; gap: 8px; }
 
 /* ---------- Hero ---------- */
 
 .hero {
     position: relative;
-    padding: 56px 0 72px;
+    padding: 32px 0 72px;
     overflow: hidden;
 }
 
@@ -190,17 +201,17 @@ summary:focus-visible {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 40px;
+    gap: 12px;
 }
 
 .hero__copy { max-width: 560px; display: flex; flex-direction: column; align-items: center; }
 
-.hero__title {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: clamp(40px, 9vw, 56px);
-    letter-spacing: 2px;
-    margin: 0 0 16px;
+.hero__title { margin: 0 0 12px; line-height: 0; }
+
+/* logotipo: nunca abaixo de 120 px (MARCA.md); proporção 1,9193 */
+.hero__logo {
+    width: clamp(200px, 58vw, 300px);
+    height: auto;
 }
 
 .hero__verse {
@@ -210,23 +221,86 @@ summary:focus-visible {
     color: rgba(255, 255, 255, 0.82);
     max-width: 480px;
     line-height: 1.6;
-    margin: 0 0 20px;
-}
-
-.hero__subtitle {
-    font-size: 15.5px;
-    color: var(--text-secondary);
-    line-height: 1.7;
     margin: 0 0 28px;
 }
+.hero__ref {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 12.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
 
-/* selos curtos logo abaixo do subtítulo */
+/* --- contagem --- */
+
+.lancamento { width: 100%; margin: 0 0 24px; }
+
+.lancamento__rotulo {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+.lancamento__rotulo strong { color: var(--accent); font-weight: 700; }
+
+/* sem JS não há número para mostrar: fica só a data escrita */
+.contador { display: none; }
+.js .contador {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+.contador__bloco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px 6px 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 1px 0 rgba(255, 233, 168, 0.08);
+}
+.contador__num {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(34px, 9vw, 44px);
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: var(--luz-2);
+    text-shadow: 0 0 24px rgba(243, 156, 18, 0.45);
+}
+.contador__rot {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.4px;
+}
+
+.hero__cta { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 0 0 24px; }
+
+.hero__note {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 380px;
+    margin: 0;
+}
+
+/* selos curtos no fim do bloco */
 .hero__badges {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    margin: 0 0 28px;
+    margin: 0;
 }
 .pill {
     font-size: 12.5px;
@@ -238,25 +312,12 @@ summary:focus-visible {
     padding: 6px 14px;
 }
 
-.hero__cta { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-
-.hero__note {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* botão "em breve": mantém o peso visual do CTA sem fingir ser um link */
-.is-soon {
-    cursor: default;
-    opacity: 0.92;
-}
-.is-soon:active { transform: none; }
-
-.hero__figure { display: flex; justify-content: center; }
+/* no celular o Lumi vem primeiro, menor, e o logotipo logo abaixo:
+   personagem + nome = a assinatura da marca */
+.hero__figure { display: flex; justify-content: center; order: -1; }
 
 .hero__lumi {
-    width: min(280px, 72vw);
+    width: min(190px, 50vw);
     height: auto;
     filter: drop-shadow(0 24px 60px rgba(243, 156, 18, 0.28));
     animation: lumi-float 6s ease-in-out infinite;
@@ -274,6 +335,16 @@ summary:focus-visible {
 .section { padding: 72px 0; position: relative; scroll-margin-top: 64px; }
 .section--alt { background: rgba(255, 255, 255, 0.02); }
 
+.section__kicker {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
 .section__title {
     font-family: var(--font-serif);
     font-weight: 700;
@@ -289,18 +360,10 @@ summary:focus-visible {
     margin: 0 auto 40px;
     line-height: 1.7;
 }
+.section__lead--depois { margin: 40px auto 0; }
 
-/* ---------- Grid de cards ---------- */
+/* ---------- Cards ---------- */
 
-.grid { display: grid; gap: 18px; }
-.grid--4 { grid-template-columns: 1fr; }
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 26px 22px;
-}
 .card__icon {
     display: inline-flex;
     align-items: center;
@@ -316,41 +379,190 @@ summary:focus-visible {
 .card__title { font-size: 17px; font-weight: 700; margin: 0 0 8px; }
 .card__text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin: 0; }
 
-/* ---------- Blocos de texto com checklist ---------- */
+/* ---------- As nove luzes ---------- */
 
-.split__copy { max-width: 520px; }
-.split__copy--center { margin: 0 auto; }
-.split__copy .section__lead { margin-bottom: 24px; }
+.luzes {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
 
-.checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.checklist li {
+.luz-card {
     position: relative;
-    padding-left: 28px;
-    font-size: 14.5px;
-    color: var(--text-secondary);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px 22px;
+    overflow: hidden;
 }
-.checklist li::before {
+/* um halo âmbar no canto: cada cartão é uma luz acesa */
+.luz-card::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 3px;
-    width: 18px;
-    height: 18px;
+    top: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(243, 156, 18, 0.16) 0%, rgba(243, 156, 18, 0) 70%);
+    pointer-events: none;
+}
+.luz-card__num {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1;
+    color: rgba(255, 233, 168, 0.22);
+}
+
+/* a primeira luz é o personagem: o cartão dele ocupa a largura toda */
+.luz-card:first-child {
+    border-color: rgba(243, 156, 18, 0.35);
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.12), rgba(255, 255, 255, 0.04) 60%);
+}
+
+/* ---------- Vitrine ---------- */
+
+.vitrine { position: relative; }
+
+.vitrine__trilho {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    padding: 4px 20px 20px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.vitrine__trilho::-webkit-scrollbar { display: none; }
+
+.vitrine__trilho li {
+    flex: 0 0 auto;
+    width: min(64vw, 260px);
+    scroll-snap-align: start;
+}
+.vitrine__trilho img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    background: var(--bg-1);
+}
+
+.vitrine__seta {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    margin-top: -32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    background: rgba(243, 156, 18, 0.15);
-    box-shadow: inset 0 0 0 1px rgba(243, 156, 18, 0.4);
+    border: 1px solid var(--border);
+    background: rgba(13, 13, 26, 0.85);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
 }
-.checklist li::after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 7px;
-    width: 8px;
-    height: 4px;
-    border-left: 2px solid var(--accent);
-    border-bottom: 2px solid var(--accent);
-    transform: rotate(-45deg);
+.vitrine__seta svg { width: 20px; height: 20px; }
+.vitrine__seta:disabled { opacity: 0.3; cursor: default; }
+.vitrine__seta--ant { left: 12px; }
+.vitrine__seta--prox { right: 12px; }
+
+/* no toque, desliza com o dedo: as setas só atrapalham */
+@media (hover: none) {
+    .vitrine__seta { display: none; }
 }
+
+/* ---------- Escada de luz ---------- */
+
+.escada {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+}
+.escada__passo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.35;
+}
+.escada__passo strong {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 12px;
+}
+
+/* luz abstrata, não o personagem: o Lumi não se redesenha */
+.escada__luz {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 42% 38%, var(--luz-1) 0%, var(--luz-3) 32%, var(--accent) 68%, #C8860A 100%);
+}
+.escada__passo--0 .escada__luz {
+    background: radial-gradient(circle at 42% 38%, #9A9AA6 0%, #5E5E68 60%, #3A3A42 100%);
+    width: 36px; height: 36px; margin: 4px 0;
+}
+.escada__passo--1 .escada__luz { width: 38px; height: 38px; margin: 3px 0; }
+.escada__passo--7 .escada__luz { box-shadow: 0 0 18px 2px rgba(243, 156, 18, 0.35); }
+.escada__passo--30 .escada__luz {
+    box-shadow: 0 0 24px 4px rgba(243, 156, 18, 0.45), 14px -14px 0 -18px var(--luz-3), -16px 10px 0 -19px var(--luz-2);
+}
+.escada__passo--365 .escada__luz {
+    width: 48px; height: 48px; margin: -2px 0;
+    box-shadow: 0 0 34px 8px rgba(243, 156, 18, 0.55), 16px -16px 0 -19px var(--luz-1), -18px 12px 0 -20px var(--luz-2), 20px 14px 0 -21px var(--luz-3);
+}
+
+/* ---------- E ainda ---------- */
+
+.extras {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 32px;
+}
+.extra {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+.extra__icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(243, 156, 18, 0.12);
+    color: var(--accent);
+}
+.extra__icon svg { width: 18px; height: 18px; }
+.extra__titulo { font-size: 15px; font-weight: 700; margin: 2px 0 4px; }
+.extra__texto { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
 /* links em texto corrido */
 .link {
@@ -409,7 +621,6 @@ summary:focus-visible {
     gap: 12px;
     text-align: center;
 }
-.brand--footer .brand__name { font-size: 16px; }
 .footer__copy { font-size: 12.5px; color: var(--text-muted); margin: 0; }
 
 .footer__links {
@@ -439,6 +650,7 @@ summary:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
     .js .reveal { opacity: 1; transform: none; transition: none; }
+    .hero__lumi { animation: none; }
     html { scroll-behavior: auto; }
 }
 
@@ -447,18 +659,39 @@ summary:focus-visible {
    =========================================================== */
 
 @media (min-width: 640px) {
-    .grid--4 { grid-template-columns: repeat(2, 1fr); }
+    .luzes { grid-template-columns: repeat(2, 1fr); }
+    .luz-card:first-child { grid-column: 1 / -1; }
+    .extras { grid-template-columns: repeat(2, 1fr); }
+    .escada__luz { width: 52px; height: 52px; }
+    .escada__passo--0 .escada__luz { width: 42px; height: 42px; margin: 5px 0; }
+    .escada__passo--1 .escada__luz { width: 46px; height: 46px; margin: 3px 0; }
+    .escada__passo--365 .escada__luz { width: 58px; height: 58px; margin: -3px 0; }
+    .escada__passo { font-size: 13px; }
 }
 
 @media (min-width: 900px) {
-    .hero__inner { flex-direction: row; text-align: left; gap: 64px; }
+    .hero { padding: 56px 0 88px; }
+    .hero__inner { flex-direction: row; text-align: left; gap: 64px; justify-content: center; }
     .hero__copy { align-items: flex-start; text-align: left; }
     .hero__verse { margin-left: 0; }
+    .lancamento__rotulo { text-align: left; }
+    .js .contador { margin: 0; }
     .hero__badges { justify-content: flex-start; }
     .hero__cta { align-items: flex-start; }
-    .hero__lumi { width: 320px; }
+    .hero__figure { order: 0; }
+    .hero__lumi { width: 340px; }
+    .hero__logo { width: 300px; }
+
+    .vitrine__trilho {
+        padding-left: max(20px, calc((100vw - var(--wrap)) / 2 + 20px));
+        padding-right: max(20px, calc((100vw - var(--wrap)) / 2 + 20px));
+        scroll-padding: 0 max(20px, calc((100vw - var(--wrap)) / 2 + 20px));
+    }
 }
 
 @media (min-width: 1040px) {
-    .grid--4 { grid-template-columns: repeat(4, 1fr); }
+    /* 3 colunas: as nove fecham um 3×3, então o Lumi volta a ser um cartão */
+    .luzes { grid-template-columns: repeat(3, 1fr); }
+    .luz-card:first-child { grid-column: auto; }
+    .extras { grid-template-columns: repeat(3, 1fr); }
 }

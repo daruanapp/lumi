@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lumi — Leia a Bíblia todo dia | App gratuito para Android</title>
-<meta name="description" content="O Lumi transforma a leitura diária da Bíblia em hábito: planos de leitura, memorização de versículos, esboços de estudo e uma comunidade de leitores. Gratuito, funciona offline.">
+<meta name="description" content="O Lumi transforma a leitura diária da Bíblia em hábito: planos no seu ritmo, cartas para colecionar, quiz, memorização e um companheiro de luz. Gratuito, sem anúncios e funciona offline.">
 
 <!-- Open Graph — o robô do WhatsApp/Facebook não resolve caminho relativo na
      imagem: precisa ser URL absoluta, igual às páginas de convite. Sem isso a
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lumi">
 <meta property="og:title" content="Lumi — Leia a Bíblia todo dia">
-<meta property="og:description" content="Planos de leitura, memorização, esboços e comunidade. Uma pequena criatura de luz acompanha sua jornada e brilha mais a cada dia de leitura.">
+<meta property="og:description" content="Planos no seu ritmo, cartas para colecionar, quiz e memorização. Uma pequena criatura de luz acompanha sua jornada e brilha mais a cada dia de leitura.">
 <meta property="og:image" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
 <meta property="og:image:secure_url" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
 <meta property="og:image:type" content="image/png">
@@ -25,7 +25,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lumi — Leia a Bíblia todo dia">
-<meta name="twitter:description" content="Planos de leitura, memorização, esboços e comunidade. Gratuito e offline.">
+<meta name="twitter:description" content="Planos no seu ritmo, cartas para colecionar, quiz e memorização. Gratuito e offline.">
 <meta name="twitter:image" content="https://daruanapp.github.io/lumi/assets/images/og-image.png">
 <meta name="twitter:image:alt" content="Lumi — leitura e estudo bíblico">
 
@@ -46,49 +46,72 @@
 
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
+<!-- O cabeçalho mostra só o ícone: o logotipo já abre a página no hero, e a
+     marca não aparece duas vezes dizendo a mesma coisa (MARCA.md). -->
 <header class="topbar">
     <div class="wrap topbar__inner">
-        <a href="#" class="brand">
+        <a href="#" class="brand" aria-label="Lumi — início">
             <img src="assets/images/icon.png" alt="" class="brand__icon" width="32" height="32">
-            <span class="brand__name">Lumi</span>
         </a>
-        <a href="teste/" class="btn btn--ghost btn--small">Testar</a>
+        <a href="https://www.instagram.com/lumibiblia/" class="btn btn--ghost btn--small so-antes" target="_blank" rel="noopener">
+            <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Seguir
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.daruanapp.lumi" class="btn btn--ghost btn--small so-depois">
+            <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar
+        </a>
     </div>
 </header>
 
 <main id="conteudo">
 
     <!-- ============ HERO ============ -->
+    <!-- Duas fases, trocadas pelo script.js na hora do lançamento
+         (1º/12/2026, 00h de Brasília): .so-antes até lá, .so-depois a partir
+         dali. Sem JS fica a fase "antes", com a data escrita por extenso. -->
     <section class="hero">
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="wrap hero__inner">
             <div class="hero__copy">
-                <h1 class="hero__title">Lumi</h1>
-                <p class="hero__verse">“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”</p>
-                <p class="hero__subtitle">
-                    Um app de leitura e estudo da Bíblia que transforma o hábito diário em algo
-                    leve — com planos, memorização, esboços e uma comunidade de leitores.
-                </p>
+                <h1 class="hero__title">
+                    <img src="assets/images/logotipo.webp" alt="Lumi" class="hero__logo" width="900" height="469" fetchpriority="high">
+                </h1>
+                <p class="hero__verse">“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”<span class="hero__ref">Salmos 119:105</span></p>
+
+                <div class="lancamento">
+                    <p class="lancamento__rotulo so-antes">Chega ao Google Play em <strong>1º de dezembro</strong></p>
+                    <p class="lancamento__rotulo so-depois">Já está no <strong>Google Play</strong></p>
+
+                    <!-- Dias, horas e minutos — sem segundos. Expectativa, não
+                         urgência: um relógio correndo de segundo em segundo
+                         apressa, e a marca não apressa ninguém. -->
+                    <div class="contador so-antes" aria-hidden="true">
+                        <div class="contador__bloco"><span class="contador__num" data-dias>--</span><span class="contador__rot" data-rot-dias>dias</span></div>
+                        <div class="contador__bloco"><span class="contador__num" data-horas>--</span><span class="contador__rot" data-rot-horas>horas</span></div>
+                        <div class="contador__bloco"><span class="contador__num" data-minutos>--</span><span class="contador__rot" data-rot-minutos>minutos</span></div>
+                    </div>
+                </div>
+
+                <div class="hero__cta">
+                    <a class="btn btn--primary btn--large so-antes" href="https://www.instagram.com/lumibiblia/" target="_blank" rel="noopener">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        Seguir @lumibiblia
+                    </a>
+                    <p class="hero__note so-antes">Até o lançamento, a gente mostra no Instagram, uma a uma, as luzes que o app traz.</p>
+
+                    <a class="btn btn--primary btn--large so-depois" href="https://play.google.com/store/apps/details?id=com.daruanapp.lumi">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Baixar no Google Play
+                    </a>
+                    <p class="hero__note so-depois">Gratuito para Android. Siga também <a class="link" href="https://www.instagram.com/lumibiblia/" target="_blank" rel="noopener">@lumibiblia</a> no Instagram.</p>
+                </div>
 
                 <p class="hero__badges">
                     <span class="pill">Gratuito</span>
                     <span class="pill">Funciona offline</span>
                     <span class="pill">Sem anúncios</span>
                 </p>
-
-                <!-- Enquanto durar o teste fechado, o botão principal recruta em
-                     vez de anunciar. Volta a "Em breve no Google Play" — ou ao
-                     link da loja — quando o app for publicado. -->
-                <div class="hero__cta">
-                    <a class="btn btn--primary btn--large" href="teste/">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                        Quero testar o app
-                    </a>
-                    <p class="hero__note">
-                        O Lumi está em teste fechado antes de ir para a Play Store.<br>
-                        As vagas estão abertas e a inscrição leva um minuto.
-                    </p>
-                </div>
             </div>
 
             <div class="hero__figure">
@@ -97,118 +120,164 @@
         </div>
     </section>
 
-    <!-- ============ QUEM É O LUMI ============ -->
-    <!-- "o Lumi", masculino, como no app. O substantivo "criatura" continua
-         feminino — quem concorda com o nome são os pronomes. -->
-    <section class="section section--alt" id="personagem">
-        <div class="wrap">
-            <h2 class="section__title">Quem é o Lumi</h2>
-            <p class="section__lead">
-                O Lumi é uma pequena criatura de luz — mistura de vagalume, estrela e chama —
-                que acompanha você dentro do app. Ele reage ao seu ritmo: brilha forte quando
-                você está lendo, comemora quando termina um capítulo e apenas perde o brilho
-                quando você some por uns dias, convidando de volta.
-            </p>
-            <p class="section__lead">
-                Ele nunca cobra e nunca culpa. A ideia é simples: criar hábito com companhia,
-                não com culpa.
-            </p>
-        </div>
-    </section>
-
-    <!-- ============ RECURSOS ============ -->
+    <!-- ============ AS NOVE LUZES ============ -->
+    <!-- A mesma ordem dos vídeos da contagem: do que mais chama atenção ao
+         que menos. Os números são do app, não de vitrine: 366 cartas (uma
+         ilustração cada, assets/cards), 12 coleções, 7.134 perguntas. -->
     <section class="section" id="recursos">
         <div class="wrap">
-            <h2 class="section__title">O que dá para fazer</h2>
-            <p class="section__lead">Tudo o que você precisa para tornar o estudo da Bíblia parte da sua rotina.</p>
+            <p class="section__kicker">O que tem no app</p>
+            <h2 class="section__title">Nove luzes para o seu caminho</h2>
+            <p class="section__lead">Ler a Bíblia todo dia fica mais leve quando cada leitura acende alguma coisa.</p>
 
-            <div class="grid grid--4">
-                <article class="card reveal">
-                    <span class="card__icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </span>
-                    <h3 class="card__title">Leitura e planos</h3>
-                    <p class="card__text">Bíblia completa navegável, com planos de leitura prontos ou criados por você, e progresso acompanhado dia a dia.</p>
-                </article>
-
-                <article class="card reveal">
-                    <span class="card__icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </span>
-                    <h3 class="card__title">Hábito com sequência</h3>
-                    <p class="card__text">Sequências diárias, marcos de recompensa e lembretes no horário que você escolher.</p>
-                </article>
-
-                <article class="card reveal">
-                    <span class="card__icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
-                    </span>
-                    <h3 class="card__title">Memorização</h3>
-                    <p class="card__text">Marque versículos para decorar e revise com repetição espaçada, no ritmo que funciona para você.</p>
-                </article>
-
-                <article class="card reveal">
-                    <span class="card__icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-                    </span>
-                    <h3 class="card__title">Esboços de estudo</h3>
-                    <p class="card__text">Monte esboços com tópicos, sequências e referências que abrem o texto bíblico com um toque.</p>
-                </article>
-            </div>
+            <ol class="luzes">
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">1</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <h3 class="card__title">O Lumi, que acende com você</h3>
+                    <p class="card__text">Uma pequena criatura de luz que lê junto. Ele brilha mais a cada dia de leitura, comemora cada capítulo e, se você some, só perde o brilho. Nunca cobra.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">2</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
+                    <h3 class="card__title">Cartas para colecionar</h3>
+                    <p class="card__text">366 cartas ilustradas de versículos, em 12 coleções, das comuns às lendárias. Leia, junte moedas e abra pacotes.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">3</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                    <h3 class="card__title">Quiz do que você leu</h3>
+                    <p class="card__text">7.134 perguntas sobre os capítulos, em três níveis. Cada acerto rende moedas para a sua coleção.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">4</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+                    <h3 class="card__title">Memorize de verdade</h3>
+                    <p class="card__text">Monte o versículo tocando as palavras na ordem. A revisão espaçada lembra na hora certa, e decorar libera a carta especial.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">5</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                    <h3 class="card__title">Grife enquanto lê</h3>
+                    <p class="card__text">Três canetas para destacar palavra por palavra ou o trecho inteiro, direto no texto.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">6</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+                    <h3 class="card__title">Um plano no seu ritmo</h3>
+                    <p class="card__text">Escolha ou crie o seu, marque dias de descanso e, se perder uns dias, recupere o ritmo sem começar do zero.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">7</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+                    <h3 class="card__title">Ouça a Bíblia</h3>
+                    <p class="card__text">Leitura em voz alta com controle de velocidade, e um modo carro de botões grandes para ouvir dirigindo.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">8</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+                    <h3 class="card__title">Troque cartas com amigos</h3>
+                    <p class="card__text">Mostre o código na sua tela, a outra pessoa lê com a câmera e as cartas trocam de mão.</p>
+                </li>
+                <li class="luz-card reveal">
+                    <span class="luz-card__num" aria-hidden="true">9</span>
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span>
+                    <h3 class="card__title">Abra num instante</h3>
+                    <p class="card__text">Diga “João 3” e o capítulo abre. Na tela inicial, widgets com o versículo do dia e as suas revisões.</p>
+                </li>
+            </ol>
         </div>
     </section>
 
-    <!-- ============ COMUNIDADE ============ -->
-    <section class="section section--alt" id="comunidade">
+    <!-- ============ VITRINE ============ -->
+    <!-- As capas da ficha da Play Store (repositório do app, loja/capas),
+         reduzidas para 600 px. Dados de vitrine, nenhum dado real. -->
+    <section class="section section--alt" id="por-dentro">
         <div class="wrap">
-            <div class="split__copy split__copy--center reveal">
-                <h2 class="section__title">Reflexões compartilhadas</h2>
-                <p class="section__lead">
-                    Escreva o que entendeu de um versículo e escolha se aquilo fica só para você
-                    ou visível para outros leitores. Acompanhe quem escreve bem e descubra
-                    leituras que você não teria feito sozinho.
-                </p>
-                <ul class="checklist">
-                    <li>Reflexões públicas ou privadas, você decide em cada uma</li>
-                    <li>Grifos no versículo e no seu próprio texto</li>
-                    <li>Seguir autores e acompanhar o que eles publicam</li>
-                </ul>
-            </div>
+            <p class="section__kicker">Por dentro</p>
+            <h2 class="section__title">Veja o Lumi em ação</h2>
+            <p class="section__lead">Deslize para ver as telas do app.</p>
+        </div>
+
+        <div class="vitrine">
+            <button class="vitrine__seta vitrine__seta--ant" type="button" aria-label="Telas anteriores" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <ul class="vitrine__trilho" tabindex="0" aria-label="Telas do app Lumi">
+                <li><img src="assets/images/vitrine/01.webp" alt="Leia a Bíblia do seu jeito: grife, comente e ouça enquanto lê" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/02.webp" alt="Um plano no seu ritmo: escolha os dias e recupere o passo quando faltar" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/03.webp" alt="Colecione inspiração: cartas de versículos que iluminam seu dia" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/04.webp" alt="Celebre cada conquista: o Lumi comemora a leitura do dia concluída" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/05.webp" alt="Guarde a Palavra: trilha de memorização com flashcards e revisão espaçada" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/06.webp" alt="Sua jornada pela Bíblia: veja quanto já leu e descubra o próximo passo" width="600" height="1066" loading="lazy"></li>
+                <li><img src="assets/images/vitrine/07.webp" alt="Estude com profundidade: esboços de estudo com os versículos" width="600" height="1066" loading="lazy"></li>
+            </ul>
+            <button class="vitrine__seta vitrine__seta--prox" type="button" aria-label="Próximas telas" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
         </div>
     </section>
 
-    <!-- ============ OFFLINE ============ -->
-    <section class="section" id="offline">
+    <!-- ============ QUEM É O LUMI ============ -->
+    <!-- "o Lumi", masculino, como no app. O substantivo "criatura" continua
+         feminino — quem concorda com o nome são os pronomes.
+         A escada de luz segue o MARCA.md do app (§2, "A luz é a sequência").
+         As esferas são luz abstrata, não o personagem: o Lumi não se redesenha. -->
+    <section class="section" id="personagem">
         <div class="wrap">
-            <div class="split__copy split__copy--center reveal">
-                <h2 class="section__title">Funciona offline</h2>
-                <p class="section__lead">
-                    A Bíblia inteira fica salva no seu aparelho. Dá para ler no metrô, em viagem
-                    ou sem sinal nenhum — e seu progresso sobe para a nuvem quando a conexão volta.
-                </p>
-                <ul class="checklist">
-                    <li>Leitura e progresso guardados no próprio celular</li>
-                    <li>Backup na nuvem para não perder nada ao trocar de aparelho</li>
-                    <li>Mais de uma tradução disponível</li>
-                </ul>
-            </div>
+            <p class="section__kicker">O personagem</p>
+            <h2 class="section__title">Quem é o Lumi</h2>
+            <p class="section__lead">
+                Uma pequena criatura de luz, mistura de vagalume, estrela e chama, que
+                acompanha você dentro do app. A luz dele é a sua sequência de leitura:
+                quanto mais dias, mais ele brilha.
+            </p>
+
+            <ol class="escada reveal">
+                <li class="escada__passo escada__passo--0"><span class="escada__luz" aria-hidden="true"></span><strong>0 dias</strong><span>sem luz</span></li>
+                <li class="escada__passo escada__passo--1"><span class="escada__luz" aria-hidden="true"></span><strong>1 dia</strong><span>ganha cor</span></li>
+                <li class="escada__passo escada__passo--7"><span class="escada__luz" aria-hidden="true"></span><strong>7 dias</strong><span>começa a brilhar</span></li>
+                <li class="escada__passo escada__passo--30"><span class="escada__luz" aria-hidden="true"></span><strong>30 dias</strong><span>faíscas no ar</span></li>
+                <li class="escada__passo escada__passo--365"><span class="escada__luz" aria-hidden="true"></span><strong>365 dias</strong><span>estrela nos olhos</span></li>
+            </ol>
+
+            <p class="section__lead section__lead--depois">
+                Ficou uns dias sem ler? Ele não fica triste nem cobra: só perde o brilho, e
+                acende de novo quando você volta. Hábito com companhia, não com culpa.
+            </p>
         </div>
     </section>
 
-    <!-- ============ PRIVACIDADE ============ -->
-    <section class="section section--alt" id="privacidade">
+    <!-- ============ E AINDA ============ -->
+    <section class="section section--alt" id="mais">
         <div class="wrap">
-            <div class="split__copy split__copy--center reveal">
-                <h2 class="section__title">Seus dados são seus</h2>
-                <p class="section__lead">
-                    Sem anúncios, sem rastreamento e sem venda de dados. O que você escreve em
-                    modo privado fica visível só para você, e dá para apagar a conta inteira
-                    dentro do app quando quiser.
-                </p>
-                <p class="section__lead">
-                    <a class="link" href="privacidade/">Ler a política de privacidade</a>
-                </p>
-            </div>
+            <h2 class="section__title">E ainda</h2>
+            <ul class="extras">
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span>
+                    <div><h3 class="extra__titulo">Esboços de estudo</h3><p class="extra__texto">Tópicos e referências que abrem o texto com um toque.</p></div>
+                </li>
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <div><h3 class="extra__titulo">Reflexões compartilhadas</h3><p class="extra__texto">Tudo nasce privado. Só vai para a comunidade se você quiser.</p></div>
+                </li>
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+                    <div><h3 class="extra__titulo">Versículo do dia</h3><p class="extra__texto">Para os dias corridos, com lembrete no horário que você escolher.</p></div>
+                </li>
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+                    <div><h3 class="extra__titulo">NVI, ACF e ARC</h3><p class="extra__texto">Três traduções, letra ajustável, modo claro e escuro.</p></div>
+                </li>
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+                    <div><h3 class="extra__titulo">Funciona sem internet</h3><p class="extra__texto">A Bíblia inteira fica no aparelho. O progresso sobe quando a conexão volta.</p></div>
+                </li>
+                <li class="extra reveal">
+                    <span class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                    <div><h3 class="extra__titulo">Seus dados são seus</h3><p class="extra__texto">Sem anúncios e sem rastreamento. <a class="link" href="privacidade/">Política de privacidade</a>.</p></div>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -218,13 +287,20 @@
         <div class="wrap cta-final__inner">
             <img src="assets/images/icon.png" alt="" class="cta-final__icon reveal" width="112" height="112">
 
-            <h2 class="cta-final__title">Comece sua jornada</h2>
-            <p class="cta-final__subtitle">Entre no teste fechado e use o app antes de todo mundo.</p>
-
-            <a class="btn btn--primary btn--large" href="teste/">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                Quero testar o app
+            <h2 class="cta-final__title so-antes">Falta pouco para acender</h2>
+            <p class="cta-final__subtitle so-antes"><span data-faltam>O Lumi chega ao Google Play em 1º de dezembro.</span></p>
+            <a class="btn btn--primary btn--large so-antes" href="https://www.instagram.com/lumibiblia/" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Seguir @lumibiblia
             </a>
+
+            <h2 class="cta-final__title so-depois">Comece sua jornada</h2>
+            <p class="cta-final__subtitle so-depois">Gratuito, sem anúncios e funciona offline.</p>
+            <a class="btn btn--primary btn--large so-depois" href="https://play.google.com/store/apps/details?id=com.daruanapp.lumi">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar no Google Play
+            </a>
+
             <p class="cta-final__note">Dúvidas ou sugestões? Escreva para <a class="link" href="mailto:biblia.lumi@gmail.com">biblia.lumi@gmail.com</a>.</p>
         </div>
     </section>
@@ -233,12 +309,9 @@
 
 <footer class="footer">
     <div class="wrap footer__inner">
-        <div class="brand brand--footer">
-            <img src="assets/images/icon.png" alt="" class="brand__icon" width="24" height="24">
-            <span class="brand__name">Lumi</span>
-        </div>
-        <nav class="footer__links">
-            <a href="teste/">Testar o app</a>
+        <img src="assets/images/icon.png" alt="Lumi" class="brand__icon" width="32" height="32">
+        <nav class="footer__links" aria-label="Rodapé">
+            <a href="https://www.instagram.com/lumibiblia/" target="_blank" rel="noopener">Instagram</a>
             <a href="privacidade/">Política de privacidade</a>
             <a href="exclusao-de-conta/">Excluir conta</a>
             <a href="mailto:biblia.lumi@gmail.com">Suporte</a>
